@@ -108,6 +108,8 @@ Respuesta esperada
 
 ## Desarrollo de la solución
 
+* Cree mi repositorio en GitHub: https://github.com/carolinavejar/Prueba-SoluNegocios
+
 * Para desarrollar la solución creé una aplicación en NodeJS (14.15.2) con express que tuviera acceso a los diferentes métodos requeridos (agregar, descontar y consultar creditos). 
 
 * En los métodos de agregar y descontar hice inicialmente un solo metodo al cual se le pasaban como parametros el correo del usuario, identificador de la tienda (numérico) y los creditos, diferenciandose en que para agregar usuarios se debía pasar un número positivo y para descontar creditos se debía enviar un número negativo en los creditos. Acá valida inicialmente si existe el usuario asociado con la tienda enviada, si es así realiza un update, si no inserta un nuevo registro.
@@ -126,7 +128,14 @@ Respuesta esperada
 
   +  http://ec2-3-131-83-130.us-east-2.compute.amazonaws.com/creditos_tienda.html -> Para consultar creditos por tienda y detallar los usuarios con credito.
 
+* Para la modificación masiva cree un archivo ejecutable en Node que se llama actualizacionMasiva.js, que actualiza desde un archivo csv que ahora está en el mismo proyecto. Para manejar los datos del csv utilicé csvtojson para poder transformar la información en JSON y colocarle nombre a los valores, de esta manera pude utilizar la misma función de actualización de creditos, porque los parametros llegan igual.
+La estructura del csv consta de un encabezado (define nombre de los atributos) y la información a actualizar: correo , creditos y id_tienda.
+Para saber si el monto se suma o se resta a los creditos le puse un número negativo a los creditos que se descontaban.
 
+Lo ejecute así en la consola.
+```
+    node actualizacionMasiva.js
+```
 ## Mejoras sugeridas 
 
 * Para ayudar a mejorar la optimización cambiaría el tipo de identificador del cliente , colocando un ID numérico para hacer las consultas mas rapidas.
@@ -136,3 +145,7 @@ Respuesta esperada
 * En una tabla se podrían registrar todas las acciones realizadas a los creditos del usuario para poder mantener un historial de esta información.
 
 * Crear un dashoard para poder ver información reelevante como los usuarios y tiendas con mas credito, actualizaciones de credito realizadas entre otros.
+
+*  Ver si existe la posibilidad de realizar procedimientos en la db que realicen las validaciones correspondientes , ejemplo en el caso de actualizar creditos que valide si existe ahí y luego actualice.
+
+* Realicé páginas para porbar el funcionamiento de la API

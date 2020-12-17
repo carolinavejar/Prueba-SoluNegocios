@@ -10,8 +10,13 @@ async function actualizacionMasiva() {
         .then((json) => {
             (async function () {
                 for (const usuario_credito of json) {
-                    let resultado = await db.setCreditos(usuario_credito);
-                    console.log(resultado)
+                    let resultado = await db.setCreditos(usuario_credito).
+                    then( ()=> {
+                        console.log('Registro actualizado : ', usuario_credito)
+                    }).catch(() => {
+                        console.log('Error al actualizar : ', usuario_credito)
+                    });
+                    
                 }
             })();
         })
