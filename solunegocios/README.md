@@ -149,3 +149,7 @@ Lo ejecute así en la consola.
 *  Ver si existe la posibilidad de realizar procedimientos en la db que realicen las validaciones correspondientes , ejemplo en el caso de actualizar creditos que valide si existe ahí y luego actualice.
 
 * Realicé páginas para porbar el funcionamiento de la API
+
+* Guardar resultado de actualizaciones masivas para ver el estado por cada dato ingresado.
+
+* Realizar actualizaciones masivas con gran número de datos a actualizar en horarios de bajo tráfico
