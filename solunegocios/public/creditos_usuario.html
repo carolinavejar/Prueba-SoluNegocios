@@ -45,6 +45,7 @@
                             <!-- Contenido encontrado -->
                         </tbody>
                     </table>
+                    <a style="display: none;" id="btnAgregaCreditos" class="waves-effect waves-light btn"><i class="material-icons left">add</i>Agregar credito</a>       
                 </div>
             </div>
     </main>
@@ -63,6 +64,12 @@
                     <label for="txtTienda">Tienda</label>
                 </div>
 
+                <div class="input-field col s6 l6 xl6 m6" id="contSelTiendasModal">
+                    <select id="selTiendasModal">
+                    </select>
+                    <label>Tiendas</label>
+                </div>
+                
                 <div class="input-field col s12 l12 x12 m12">
                     <input id="txtCreditos" type="number" min="1" pattern="^[0-9]+">
                     <label for="txtCreditos">Créditos</label>

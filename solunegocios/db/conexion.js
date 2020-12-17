@@ -11,12 +11,11 @@ const db = new Sequelize({
 
 async function setCreditos(data) {
     try {
-        console.log("data setCreditos", data);
         let query = `UPDATE credito_usuario
                 SET credito = credito + ` + data.creditos + `
                 WHERE correo_usuario = '` + data.correo + `' AND id_tienda = ` + data.id_tienda + `;`
         const [results, metadata] = await db.query(query);
-        console.log("-----------------result", results);
+        console.log("Creditos actualizados");
         return results;
     } catch (error) {
         throw new Error('Error')
@@ -46,7 +45,7 @@ async function getUsuarios() {
 
 async function getCreditosUsuario(data) {
     try {
-        let query = `select a.correo, b.credito, b.credito, c.nombre as nombre_tienda, c.id_tienda from usuario a 
+        let query = `select a.correo, b.credito, c.nombre as nombre_tienda, c.id_tienda from usuario a 
                      left join credito_usuario b 
                      on a.correo = b.correo_usuario 
                      left join tienda c
@@ -62,10 +61,19 @@ async function getCreditosUsuario(data) {
 
 async function getCreditosTienda(data) {
     try {
-        let query = `select sum(credito) as total_credito from credito_usuario
-                     where id_tienda = ` + data.id_tienda +`;`;
+        // let query = `select sum(credito) as total_credito from credito_usuario
+        //              where id_tienda = ` + data.id_tienda +`;`;
+         
+        //Trae los usuarios y creditos por tienda
+        let query = `select a.correo_usuario as correo, a.credito, c.nombre as nombre_tienda, c.id_tienda
+                     from credito_usuario a 
+                     left join usuario b 
+                     on b.correo = a.correo_usuario 
+                     left join tienda c
+                     on c.id_tienda = a.id_tienda
+                     where a.id_tienda = '` + data.id_tienda +`' ;`;
         const [results] = await db.query(query);
-        console.log("-----------------result", results);
+        return results;
     } catch (error) {
         console.log("error", error);
         throw new Error('Error')
